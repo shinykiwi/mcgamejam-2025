@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
+            print("Picking Up");
             if (itemHeld != null)
             {
                 DropItem();
@@ -33,6 +34,7 @@ public class PlayerController : MonoBehaviour
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out RaycastHit hit, 2f))
         {
+            print(hit.collider.name);
             PhysicalItem item = hit.collider.GetComponent<PhysicalItem>();
             if (item != null)
             {

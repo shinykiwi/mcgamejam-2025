@@ -21,7 +21,7 @@ public class ItemSpawner : MonoBehaviour
         ItemData randomItem = possibleItems[Random.Range(0, possibleItems.Length)];
         Color randomColor = possibleColors[Random.Range(0, possibleColors.Length)];
 
-        GameObject itemSpawned = Instantiate(randomItem.prefab,new Vector3( Random.Range(4,4.7f), 0.5f, Random.Range(-1.3f, 1.3f)) , Quaternion.identity);
+        GameObject itemSpawned = Instantiate(randomItem.prefab,new Vector3( Random.Range(-3.5f, -2.5f) ,1.7f,Random.Range(-8f, -6f)) , Quaternion.identity);
         PhysicalItem physicalItem = itemSpawned.GetComponent<PhysicalItem>();
         
         if (physicalItem != null)
