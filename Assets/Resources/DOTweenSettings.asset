@@ -41,7 +41,7 @@ MonoBehaviour:
     showPanel: 0
     audioEnabled: 1
     physicsEnabled: 1
-    physics2DEnabled: 1
+    physics2DEnabled: 0
     spriteEnabled: 1
     uiEnabled: 1
     textMeshProEnabled: 0
@@ -51,4 +51,4 @@ MonoBehaviour:
     epoOutlineEnabled: 0
   createASMDEF: 0
   showPlayingTweens: 0
-  showPausedTweens: 0
+  showPausedTweens: 1

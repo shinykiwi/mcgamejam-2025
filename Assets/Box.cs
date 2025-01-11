@@ -1,17 +1,18 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
 public class Box : MonoBehaviour
 {
     // Should really be randomly generated
-    private Stack<string> items;
+    private Stack<ItemData> items;
     private bool isHovering = false;
 
     private void Start()
     {
-        items = new Stack<string>();
+        items = new Stack<ItemData>();
         InitializeBox();
 
         // Delete this once you integrate with raycast
@@ -20,9 +21,7 @@ public class Box : MonoBehaviour
 
     private void InitializeBox()
     {
-        items.Push("sock");
-        items.Push("shoe");
-        items.Push("phone");
+        // items.Push()
     }
 
     public void Reset()
@@ -35,7 +34,7 @@ public class Box : MonoBehaviour
     /// Takes one item from the box and returns it.
     /// </summary>
     /// <returns></returns>
-    public string TakeOneItem()
+    public ItemData TakeOneItem()
     {
         
         return items.Pop();

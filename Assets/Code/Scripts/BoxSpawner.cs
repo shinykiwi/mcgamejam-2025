@@ -1,18 +1,25 @@
 
 using System;
+using System.Collections;
+using System.Collections.Generic;
+using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class BoxSpawner : MonoBehaviour
 {
+    // Box components
     [SerializeField] private GameObject boxObject;
     
     // UI components
     [SerializeField] private GameObject ui;
+    [SerializeField] private RectTransform uiRect;
     private Image image;
     private TextMeshProUGUI text;
     private Box box;
+
+    private Queue<ItemData> popupQueue;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -21,6 +28,9 @@ public class BoxSpawner : MonoBehaviour
         box = boxObject.GetComponent<Box>();
         image = ui.GetComponentInChildren<Image>();
         text = ui.GetComponentInChildren<TextMeshProUGUI>();
+        
+        // Initializing the queue
+        popupQueue = new Queue<ItemData>();
         
         // Hide the UI at first
         ui.SetActive(false);
@@ -33,28 +43,34 @@ public class BoxSpawner : MonoBehaviour
         ui.SetActive(false);
     }
 
+    IEnumerator ShowPopup()
+    {
+        uiRect.DOPunchScale(new Vector3(2, 2, 2), 20, 5, 1);
+        yield return null;
+    }
+
     // Update is called once per frame
     void Update()
     {
+        // On Left Click
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
+            // If there's already a box
             if (box && boxObject.activeSelf && box.IsHovering())
             {
-                string output = box.TakeOneItem();
-                Debug.Log(output);
+                ItemData itemTaken = box.TakeOneItem();
+                Debug.Log(itemTaken);
                 
-                // Should play the click sound here 
+                // Should play the "take" sound here 
                 
                 // Should show the popup UI here, use DotWeen to animate it
                 // Add to stack on click, coroutine that handles the popups
                 // See Red Dead for inspo
                 
-                // set UI image
-                //image.sprite = 
+                // Add item to the queue
+                popupQueue.Enqueue(itemTaken);
                 
-                // set UI text
-                text.text = output;
-                // call function to add to pile
+                // Start coroutine to display popup
                 
                 ui.SetActive(true);
                 
@@ -66,10 +82,18 @@ public class BoxSpawner : MonoBehaviour
                     box.Reset();
                 }
             }
+            
+            // If there's no box
             else
             {
                 boxObject.SetActive(true);
             }
         }
+    }
+
+    private void SetUI(ItemData itemData)
+    {
+        image.sprite = itemData.icon;
+        text.text = itemData.name;
     }
 }
