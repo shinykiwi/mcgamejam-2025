@@ -26,7 +26,7 @@ public class BoxSpawner : MonoBehaviour
     {
         boxObject = Instantiate(boxObject, transform);
         box = boxObject.GetComponent<Box>();
-        box.numItems = 5;
+        box.InitializeBox();
         image = ui.GetComponentInChildren<Image>();
         text = ui.GetComponentInChildren<TextMeshProUGUI>();
         
@@ -83,6 +83,7 @@ public class BoxSpawner : MonoBehaviour
             if (box && boxObject.activeSelf && box.IsHovering())
             {
                 PhysicalItem itemTaken = box.TakeOneItem();
+                // ReSharper disable once Unity.PerformanceCriticalCodeInvocation
                 Inventory.instance.AddItem(itemTaken);
 
                 

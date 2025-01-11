@@ -16,11 +16,19 @@ public class Inventory : MonoBehaviour
     {
         items.Add(item);
         Debug.Log($"{item.itemData.itemName} added to inventory.");
+        placeOnInventory(item);
     }
-    
+
+    public void placeOnInventory(PhysicalItem item)
+    {
+        item.transform.position = new Vector3(Random.Range(-3.5f, -2.5f), 1.7f, Random.Range(-8f, -6f));
+        item.transform.rotation = Quaternion.Euler(0f, Random.Range(-45f, 45f), 0f);
+        item.GetComponent<Rigidbody>().isKinematic = false;
+    }
     public void RemoveItem(PhysicalItem item)
     {
         items.Remove(item);
+        
         Debug.Log($"{item.itemData.itemName} removed from inventory.");
     }
     

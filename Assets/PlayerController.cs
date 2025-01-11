@@ -30,8 +30,20 @@ public class PlayerController : MonoBehaviour
 
     void DropItem()
     {
-        itemHeld.Drop();
-        itemHeld = null;
+        
+        
+        Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+        if (Physics.Raycast(ray, out RaycastHit hit))
+        {
+
+            if (hit.collider.name == "InventoryTable")
+            {
+                itemHeld.Drop(hit.point + Vector3.up*0.1f);
+                itemHeld = null;                
+            }
+            
+        }
+        
     }
 
     // ReSharper disable Unity.PerformanceAnalysis
@@ -41,7 +53,7 @@ public class PlayerController : MonoBehaviour
         Ray ray = cam.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out RaycastHit hit))
         {
-            print(hit.collider.name);
+            
             PhysicalItem item = hit.collider.GetComponent<PhysicalItem>();
             if (item != null)
             {
