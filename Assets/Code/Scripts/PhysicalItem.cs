@@ -1,4 +1,6 @@
+using System;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 [RequireComponent(typeof(Rigidbody))]
 public class PhysicalItem : MonoBehaviour
@@ -24,8 +26,6 @@ public class PhysicalItem : MonoBehaviour
     void Start()
     {
         itemSize = transform.localScale;
-        material = new Material(material);
-        material.color = ItemSpawner.instance.PossibleColors[color];
         setColor();
     }
     
@@ -43,6 +43,8 @@ public class PhysicalItem : MonoBehaviour
 
     void setColor()
     {
+        material = new Material(material);
+        material.color = ItemSpawner.instance.PossibleColors[color];
         foreach (GameObject coloredPart in coloredParts)
         {
             coloredPart.GetComponent<MeshRenderer>().material = material;
@@ -63,4 +65,12 @@ public class PhysicalItem : MonoBehaviour
     {
         return "a " + color + " " + ItemName;
     }
+
+    
+    protected bool Equals(PhysicalItem other)
+    {
+        return ItemName == other.ItemName && color == other.color;
+    }
+
+    
 }
