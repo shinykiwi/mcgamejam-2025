@@ -36,9 +36,7 @@ public class Box : MonoBehaviour
     /// <returns></returns>
     public PhysicalItem TakeOneItem()
     {
-        
         return items.Pop();
-        
     }
 
     public bool NextExists()

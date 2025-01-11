@@ -4,9 +4,7 @@ using UnityEngine;
 public class PhysicalItem : MonoBehaviour
 {
     public ItemData itemData;
-    public Color color; 
-    public Material material;
-
+    public string color;
 
     public string ItemName => itemData.itemName;
     public Sprite Icon => itemData.icon;
@@ -25,10 +23,7 @@ public class PhysicalItem : MonoBehaviour
         
     }
 
-    void setColor()
-    {
-        material.color = color;
-    }
+    
     public void Drop(Vector3 pos)
     {
         transform.SetParent(null);
@@ -36,5 +31,10 @@ public class PhysicalItem : MonoBehaviour
         GetComponent<Rigidbody>().isKinematic = false;
         transform.position = pos;
         
+    }
+
+    public string GetDescription()
+    {
+        return "a " + color + " " + ItemName;
     }
 }

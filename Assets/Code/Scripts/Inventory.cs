@@ -15,7 +15,7 @@ public class Inventory : MonoBehaviour
     public void AddItem(PhysicalItem item)
     {
         items.Add(item);
-        Debug.Log($"{item.itemData.itemName} added to inventory.");
+        Debug.Log($"{item.GetDescription()} added to inventory.");
         placeOnInventory(item);
     }
 
@@ -29,7 +29,7 @@ public class Inventory : MonoBehaviour
     {
         items.Remove(item);
         
-        Debug.Log($"{item.itemData.itemName} removed from inventory.");
+        Debug.Log($"{item.GetDescription()} removed from inventory.");
     }
     
     public List<PhysicalItem> GetItems()
