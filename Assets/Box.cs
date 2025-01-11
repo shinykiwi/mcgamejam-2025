@@ -34,9 +34,22 @@ public class Box : MonoBehaviour
     /// Takes one item from the box and returns it.
     /// </summary>
     /// <returns></returns>
-    public PhysicalItem TakeOneItem()
+    
+    
+    public void TakeOneItem()
     {
-        return items.Pop();
+        //get item
+        PhysicalItem item = items.Pop();
+        
+        //Give item to Inventory and BoxSpawner
+        Inventory.instance.AddItem(item);
+        BoxSpawner.instance.popupQueue.Enqueue(item);
+        
+        //Check if box is empty
+        if (!NextExists())
+        {
+            gameObject.SetActive(false);
+        }
     }
 
     public bool NextExists()

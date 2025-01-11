@@ -9,18 +9,23 @@ using UnityEngine.UI;
 
 public class BoxSpawner : MonoBehaviour
 {
+    //Singleton
     public static BoxSpawner instance;
-    // Box components
-    [SerializeField] private GameObject boxObject;
+    // 3 boxes
+    [SerializeField] private Box[] boxes;
     
     // UI components
     [SerializeField] private GameObject ui;
     [SerializeField] private RectTransform uiRect;
     private Image image;
     private TextMeshProUGUI text;
-    private Box box;
-
-    private Queue<PhysicalItem> popupQueue;
+    
+    public Queue<PhysicalItem> popupQueue;
+    
+    //Box spawn timers
+    [SerializeField]
+    private float boxSpawnInterval;
+    private float boxSpawnTime;
 
 
     void Awake()
@@ -30,9 +35,8 @@ public class BoxSpawner : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        boxObject = Instantiate(boxObject, transform);
-        box = boxObject.GetComponent<Box>();
-        box.InitializeBox();
+        boxSpawnTime = 5;
+        
         image = ui.GetComponentInChildren<Image>();
         text = ui.GetComponentInChildren<TextMeshProUGUI>();
         
@@ -44,6 +48,31 @@ public class BoxSpawner : MonoBehaviour
         
     }
 
+    void Update()
+    {
+        print(Time.time + " " +  boxSpawnTime);
+        if (Time.time > boxSpawnTime)
+        {
+            boxSpawnTime = Time.time + boxSpawnInterval;
+            spawnBox();
+        }   
+    }
+
+
+    void spawnBox()
+    {
+        for (int i = 0; i < boxes.Length; i++)
+        {
+            if (!boxes[i].isActiveAndEnabled)
+            {
+                Box box = boxes[i];
+                box.gameObject.SetActive(true);
+                box.InitializeBox();
+                
+                break;
+            }
+        }
+    }
     // Hides the UI when not in the Box view
     private void OnDisable()
     {
@@ -80,7 +109,7 @@ public class BoxSpawner : MonoBehaviour
     }
 
     
-
+/*
     public void Unbox()
     {
         // If there's already a box
@@ -121,6 +150,8 @@ public class BoxSpawner : MonoBehaviour
             StartCoroutine(nameof(ControlPopups));
         }
     }
+    
+*/
     private void SetUI(PhysicalItem item)
     {
         image.sprite = item.Icon;
