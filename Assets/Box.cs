@@ -37,13 +37,13 @@ public class Box : MonoBehaviour
     /// <returns></returns>
     public string TakeOneItem()
     {
-        if (items.Count > 1)
-        {
-            Debug.Log(items.Peek());
-            return items.Pop();
-        }
+        
+        return items.Pop();
+    }
 
-        return null;
+    public bool NextExists()
+    {
+        return items.Count > 0;
     }
 
     /// <summary>

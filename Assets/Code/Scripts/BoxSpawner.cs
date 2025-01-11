@@ -21,7 +21,12 @@ public class BoxSpawner : MonoBehaviour
             if (box && boxObject.activeSelf && box.IsHovering())
             {
                 string output = box.TakeOneItem();
-                if (output == null)
+                Debug.Log(output);
+                
+                // Should play the click sound here 
+                
+                
+                if (!box.NextExists())
                 {
                     // Hide the box
                     boxObject.SetActive(false);
