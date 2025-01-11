@@ -16,7 +16,7 @@ public class PeopeSpawner : MonoBehaviour
     [SerializeField] TextMeshPro dialogueTMP;
     [SerializeField] private String[] dialogueOptions;
 
-    private bool noPersonAtCounter = true;
+    private bool personAtCounter = false;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -27,15 +27,16 @@ public class PeopeSpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(noPersonAtCounter){
-            spawnPerson();
-            noPersonAtCounter = false;
+        if(!personAtCounter){
+            StartCoroutine(spawnPerson());
         }
     }
 
     private IEnumerator spawnPerson()
     {
-        yield return new WaitForSeconds(2);
+        personAtCounter = true;
+        yield return new WaitForSeconds(6);
+        Debug.Log("Spawned person");
         currentPerson = Instantiate(personPrefab, new Vector3(0.72f,2.11f,-11.13f), Quaternion.identity);
         speachBubble = currentPerson.transform.GetChild(0).gameObject;
         //assign dialogue based on the lost object
@@ -55,4 +56,13 @@ public class PeopeSpawner : MonoBehaviour
     public GameObject GetCurrentPerson(){
         return currentPerson;
     }
+
+     public void SetCurrentPerson(GameObject person){
+        currentPerson = person;
+    }
+
+    public void SetPersonAtCounter(bool personAtCounter){
+        this.personAtCounter = personAtCounter;
+    }
+    
 }

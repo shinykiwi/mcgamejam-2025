@@ -44,13 +44,16 @@ public class PlayerController : MonoBehaviour
 
     private void ReturnItem()
     {
-        if(Input.GetMouseButtonDown(0)){
+        if(PeopeSpawner.instance.GetCurrentPerson() != null){
             Person currentPerson = PeopeSpawner.instance.GetCurrentPerson().GetComponent<Person>();
             currentPerson.SetReturnedObject(itemHeld);
             currentPerson.Resolve();
-            Destroy(itemHeld.gameObject);
+            if(itemHeld != null)
+               Destroy(itemHeld.gameObject);
+
             itemHeld = null;
         }
+
     }
 
     void Unbox()

@@ -7,7 +7,7 @@ public class Person : MonoBehaviour
 {
     [SerializeField] private PhysicalItem lostItem;
     [SerializeField] private float timeLeft = 10;
-    [SerializeField] private PhysicalItem returnedItem;
+    [SerializeField] private PhysicalItem returnedItem = null;
     [SerializeField] public bool lostItemDoesNotExist = false;
     [SerializeField] public bool resolved = false;
 
@@ -21,23 +21,30 @@ public class Person : MonoBehaviour
     void Update()
     {
         timeLeft -= Time.deltaTime;
-
+  
         if(timeLeft < 0){
             TimerOver();
         }
 
         if(resolved){
-            //validateReturn();
+            validateReturn();
         }
     }
 
     private void validateReturn()
     {
         if(ReturnedCorrectItem()){
+            Debug.Log("Returned correct item");
             //add points to score
         } else {
+            Debug.Log("Return wrong item");
             //penalty
         }
+
+        PeopeSpawner.instance.SetPersonAtCounter(false);
+        PeopeSpawner.instance.SetCurrentPerson(null);
+        Debug.Log("Destroyed person");
+        Destroy(this.gameObject);
     }
 
     void selectLostObject(){
@@ -45,36 +52,48 @@ public class Person : MonoBehaviour
        int randomValue = UnityEngine.Random.Range(0, 100); 
        List<PhysicalItem> itemsInInventory = Inventory.instance.GetItems();
 
-        if (randomValue < 70 && itemsInInventory.Count > 0)
+        if (randomValue < 85 && itemsInInventory.Count > 0)
         {
+            Debug.Log("Item picked from inventory");
             //pick from item from inventory and assign to person
             if(Inventory.instance != null){
                lostItem = itemsInInventory[Random.Range(0, itemsInInventory.Count)];
             }
 
         }
-        else if (randomValue < 85 && BoxSpawner.instance.GetArrayItems().Length > 0)
+        else if (randomValue < -1 && BoxSpawner.instance.GetArrayItems().Length > 0)
         {
+            Debug.Log("Item picked from box");
             //pick item from boxes and assign to person
             lostItem = BoxSpawner.instance.GetRandomItemFromBox();
         }
         else
         {
+            Debug.Log("Item picked from non existing items");
             //pick item that "does not currently exist" and assign to person
             lostItem = ItemSpawner.instance.GetRandomItem();
         }
+
+        Debug.Log("Lost item is " + lostItem.GetDescription());
         
     }
 
     private void TimerOver(){
-        resolved = true;
+        LeaveCounter();
+        //penalty
+    }
+
+    void LeaveCounter(){
+        PeopeSpawner.instance.SetPersonAtCounter(false);
+        Debug.Log("Time up Destroyed person");
+        Destroy(this.gameObject);
     }
 
     private bool ReturnedCorrectItem(){
 
-        if(returnedItem.Equals(lostItem)){
+        if(returnedItem != null && returnedItem.Equals(lostItem)){
             return true;
-        } else if (returnedItem.Equals(null) && !Inventory.instance.GetItems().Contains(lostItem) && !BoxSpawner.instance.GetArrayItems().Contains(lostItem)){
+        } else if (returnedItem == null && !Inventory.instance.GetItems().Contains(lostItem) && !BoxSpawner.instance.GetArrayItems().Contains(lostItem)){
             return true;
         } else {
             return false;

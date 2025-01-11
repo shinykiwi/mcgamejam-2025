@@ -125,7 +125,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lostItem: {fileID: 0}
-  timeLeft: -86.085266
+  timeLeft: 10
   returnedItem: {fileID: 0}
   lostItemDoesNotExist: 0
   resolved: 0
