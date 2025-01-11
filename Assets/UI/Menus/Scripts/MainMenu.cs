@@ -39,6 +39,8 @@ public class MainMenu : MonoBehaviour
         // Hide the credits menu and the options menu to start with
         credits.SetActive(false);
         options.SetActive(false);
+        
+        Hide();
     }
 
     private void Update()
