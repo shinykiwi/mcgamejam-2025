@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8bad66c865ee933468ba730671d13438, type: 3}
+  m_Name: DialogueOptions
+  m_EditorClassIdentifier: 
+  dialogues:
+  - "Hi, um\u2026 I think I lost something. It's really important. Do you happen
+    to have a _"
+  - "Excuse me, I lost something very important here. It\u2019s a _ . I can\u2019t
+    live without it. Have you seen it?"
+  - "I believe I left my _ here. It\u2019s very special to me."
+  - 
