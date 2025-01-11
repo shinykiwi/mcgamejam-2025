@@ -43,9 +43,32 @@ public class BoxSpawner : MonoBehaviour
         ui.SetActive(false);
     }
 
-    IEnumerator ShowPopup()
+    IEnumerator ShowPopup(ItemData item)
     {
-        uiRect.DOPunchScale(new Vector3(2, 2, 2), 20, 5, 1);
+        ui.SetActive(true);
+        SetUI(item);
+        uiRect.DOPunchAnchorPos(Vector2.down * 4, 0.8f, 5);
+        int i = 0;
+        
+        // Wait X seconds
+        while (i < 2)
+        {
+            i++;
+            yield return null;
+        }
+        
+        ui.SetActive(false);
+        
+        // Done
+    }
+
+    IEnumerator ControlPopups()
+    {
+        if (popupQueue.Count > 0)
+        {
+            StartCoroutine(ShowPopup(popupQueue.Dequeue()));
+        }
+        
         yield return null;
     }
 
@@ -80,6 +103,7 @@ public class BoxSpawner : MonoBehaviour
                     boxObject.SetActive(false);
                     ui.SetActive(false);
                     box.Reset();
+                    StopCoroutine(nameof(ControlPopups));
                 }
             }
             
@@ -87,6 +111,7 @@ public class BoxSpawner : MonoBehaviour
             else
             {
                 boxObject.SetActive(true);
+                StartCoroutine(nameof(ControlPopups));
             }
         }
     }
