@@ -14,6 +14,8 @@ public class ViewManager : MonoBehaviour
 
     [SerializeField] private TextMeshProUGUI debugText;
     [SerializeField] private bool debugOn = true;
+    
+    private BoxSpawner boxSpawner;
 
     private void Start()
     {
@@ -21,6 +23,9 @@ public class ViewManager : MonoBehaviour
         {
             GetComponentInChildren<Canvas>().enabled = false;
         }
+        
+        boxSpawner = FindFirstObjectByType<BoxSpawner>();
+        boxSpawner.enabled = false;
     }
 
     // Update is called once per frame
@@ -59,14 +64,17 @@ public class ViewManager : MonoBehaviour
         switch (camView)
         {
             case 0:
+                boxSpawner.enabled = false;
                 counterCam.enabled = true;
                 debugText.text = "Counter";
                 break;
             case 1:
+                boxSpawner.enabled = true;
                 boxCam.enabled = true;
                 debugText.text = "Box";
                 break;
             case 2:
+                boxSpawner.enabled = false;
                 lostNFoundCam.enabled = true;
                 debugText.text = "Lost and Found";
                 break;
