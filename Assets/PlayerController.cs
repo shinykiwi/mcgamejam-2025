@@ -1,10 +1,10 @@
+using System;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
     public Transform handPosition;
-    public PhysicalItem itemHeld;
-    
+    public PhysicalItem itemHeld;    
     private Camera cam;
 
     void Start()
@@ -24,6 +24,7 @@ public class PlayerController : MonoBehaviour
                     break;
                 
                 case 1:
+                    ReturnItem();
                     break;
                 
                 case 2:
@@ -41,6 +42,16 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private void ReturnItem()
+    {
+        if(Input.GetMouseButtonDown(0)){
+            Person currentPerson = PeopeSpawner.instance.GetCurrentPerson().GetComponent<Person>();
+            currentPerson.SetReturnedObject(itemHeld);
+            currentPerson.Resolve();
+            Destroy(itemHeld.gameObject);
+            itemHeld = null;
+        }
+    }
 
     void Unbox()
     {
@@ -90,4 +101,6 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
+
+
 }
