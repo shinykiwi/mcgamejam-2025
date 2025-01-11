@@ -9,6 +9,11 @@ public class Box : MonoBehaviour
     private Stack<PhysicalItem> items;
     private bool isHovering = false;
 
+
+    public PhysicalItem[] GetArrayItems()
+    {
+        return items.ToArray();
+    }
     private void Awake()
     {
         items = new Stack<PhysicalItem>();
