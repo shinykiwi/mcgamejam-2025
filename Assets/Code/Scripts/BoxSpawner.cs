@@ -9,6 +9,7 @@ using UnityEngine.UI;
 
 public class BoxSpawner : MonoBehaviour
 {
+    public static BoxSpawner instance;
     // Box components
     [SerializeField] private GameObject boxObject;
     
@@ -20,7 +21,12 @@ public class BoxSpawner : MonoBehaviour
     private Box box;
 
     private Queue<PhysicalItem> popupQueue;
-    
+
+
+    void Awake()
+    {
+        instance = this;
+    }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -73,52 +79,48 @@ public class BoxSpawner : MonoBehaviour
         yield return null;
     }
 
-    // Update is called once per frame
-    void Update()
+    
+
+    public void Unbox()
     {
-        // On Left Click
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        // If there's already a box
+        if (box && boxObject.activeSelf && box.IsHovering())
         {
-            // If there's already a box
-            if (box && boxObject.activeSelf && box.IsHovering())
-            {
-                PhysicalItem itemTaken = box.TakeOneItem();
-                // ReSharper disable once Unity.PerformanceCriticalCodeInvocation
-                Inventory.instance.AddItem(itemTaken);
+            PhysicalItem itemTaken = box.TakeOneItem();
+            // ReSharper disable once Unity.PerformanceCriticalCodeInvocation
+            Inventory.instance.AddItem(itemTaken);
 
                 
-                // Should play the "take" sound here 
+            // Should play the "take" sound here 
                 
-                // Should show the popup UI here, use DotWeen to animate it
-                // Add to stack on click, coroutine that handles the popups
-                // See Red Dead for inspo
+            // Should show the popup UI here, use DotWeen to animate it
+            // Add to stack on click, coroutine that handles the popups
+            // See Red Dead for inspo
                 
-                // Add item to the queue
-                popupQueue.Enqueue(itemTaken);
+            // Add item to the queue
+            popupQueue.Enqueue(itemTaken);
                 
-                // Start coroutine to display popup
+            // Start coroutine to display popup
                 
-                ui.SetActive(true);
+            ui.SetActive(true);
                 
-                if (!box.NextExists())
-                {
-                    // Hide the box
-                    boxObject.SetActive(false);
-                    ui.SetActive(false);
-                    box.Reset();
-                    StopCoroutine(nameof(ControlPopups));
-                }
-            }
-            
-            // If there's no box
-            else
+            if (!box.NextExists())
             {
-                boxObject.SetActive(true);
-                StartCoroutine(nameof(ControlPopups));
+                // Hide the box
+                boxObject.SetActive(false);
+                ui.SetActive(false);
+                box.Reset();
+                StopCoroutine(nameof(ControlPopups));
             }
         }
+            
+        // If there's no box
+        else
+        {
+            boxObject.SetActive(true);
+            StartCoroutine(nameof(ControlPopups));
+        }
     }
-
     private void SetUI(PhysicalItem item)
     {
         image.sprite = item.Icon;

@@ -8,6 +8,7 @@ public class ViewManager : MonoBehaviour
 {
     private int camView = 0;
 
+    public static ViewManager Instance;
     [SerializeField] private CinemachineCamera counterCam;
     [SerializeField] private CinemachineCamera lostNFoundCam;
     [SerializeField] private CinemachineCamera boxCam;
@@ -17,6 +18,15 @@ public class ViewManager : MonoBehaviour
     
     private BoxSpawner boxSpawner;
 
+    void Awake()
+    {
+        Instance = this;
+    }
+
+    public int GetCamView()
+    {
+        return camView;
+    }
     private void Start()
     {
         if (!debugOn)

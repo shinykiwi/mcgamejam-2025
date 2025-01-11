@@ -16,18 +16,45 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            
-            if (itemHeld != null)
+            switch (ViewManager.Instance.GetCamView())
             {
-                DropItem();
-            }
-            else
-            {
-                TryPickUpItem();
+             
+                case 0:
+                    Unbox();
+                    break;
+                
+                case 1:
+                    break;
+                
+                case 2:
+                    if (itemHeld != null)
+                    {
+                        DropItem();
+                    }
+                    else
+                    {
+                        TryPickUpItem();
+                    }
+                    break;
+                    
             }
         }
     }
 
+
+    void Unbox()
+    {
+        Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+        if (Physics.Raycast(ray, out RaycastHit hit))
+        {
+
+            if (hit.collider.CompareTag("Box"))
+            {
+                BoxSpawner.instance.Unbox();
+            }
+            
+        }
+    }
     void DropItem()
     {
         
