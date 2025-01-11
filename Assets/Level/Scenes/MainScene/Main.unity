@@ -1117,7 +1117,7 @@ MonoBehaviour:
     Enabled: 0
     DefaultMode: 2
   DefaultBlend:
-    Style: 4
+    Style: 5
     Time: 0.5
     CustomCurve:
       serializedVersion: 2

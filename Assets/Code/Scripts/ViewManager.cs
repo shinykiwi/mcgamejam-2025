@@ -38,10 +38,6 @@ public class ViewManager : MonoBehaviour
             {
                 camView++;
             }
-            else
-            {
-                camView = 0;
-            }
         }
 
         // Going left
@@ -50,10 +46,6 @@ public class ViewManager : MonoBehaviour
             if (camView <= 2 && camView > 0)
             {
                 camView--;
-            }
-            else
-            {
-                camView = 2;
             }
         }
 
@@ -64,14 +56,14 @@ public class ViewManager : MonoBehaviour
         switch (camView)
         {
             case 0:
-                boxSpawner.enabled = false;
-                counterCam.enabled = true;
-                debugText.text = "Counter";
-                break;
-            case 1:
                 boxSpawner.enabled = true;
                 boxCam.enabled = true;
                 debugText.text = "Box";
+                break;
+            case 1:
+                boxSpawner.enabled = false;
+                counterCam.enabled = true;
+                debugText.text = "Counter";
                 break;
             case 2:
                 boxSpawner.enabled = false;
