@@ -2,6 +2,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
@@ -59,7 +60,7 @@ public class BoxSpawner : MonoBehaviour
             
             boxSpawnTime = Time.time + boxSpawnInterval;
             spawnBox();
-            print(GetRandomItemFromBox().GetDescription());
+            
         }   
     }
 
@@ -74,8 +75,23 @@ public class BoxSpawner : MonoBehaviour
             } 
         }
         return null;
-    } 
+    }
 
+    public PhysicalItem[] GetArrayItems()
+    {
+        PhysicalItem[] allItems = { };
+        for (int i = 0; i < boxes.Length; i++)
+        {
+            if (boxes[i].gameObject.activeInHierarchy)
+            {
+                PhysicalItem[] boxItems = boxes[i].GetArrayItems();
+                allItems = allItems.Concat(boxItems).ToArray();
+            } 
+        }
+
+        
+        return allItems;
+    }
     void spawnBox()
     {
         for (int i = 0; i < boxes.Length; i++)
