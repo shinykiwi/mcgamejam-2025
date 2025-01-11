@@ -6,6 +6,7 @@ using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 public class BoxSpawner : MonoBehaviour
 {
@@ -47,17 +48,33 @@ public class BoxSpawner : MonoBehaviour
         ui.SetActive(false);
         
     }
+    
+    
 
     void Update()
     {
 //        print(Time.time + " " +  boxSpawnTime);
         if (Time.time > boxSpawnTime)
         {
+            
             boxSpawnTime = Time.time + boxSpawnInterval;
             spawnBox();
+            print(GetRandomItemFromBox().GetDescription());
         }   
     }
 
+    public PhysicalItem GetRandomItemFromBox()
+    {
+        for (int i = 0; i < boxes.Length; i++)
+        {
+            if (boxes[i].gameObject.activeInHierarchy)
+            {
+                PhysicalItem[] items = boxes[i].GetArrayItems();
+                return items[Random.Range(0, items.Length)];
+            } 
+        }
+        return null;
+    } 
 
     void spawnBox()
     {
