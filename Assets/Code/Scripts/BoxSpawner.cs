@@ -83,7 +83,8 @@ public class BoxSpawner : MonoBehaviour
             if (box && boxObject.activeSelf && box.IsHovering())
             {
                 PhysicalItem itemTaken = box.TakeOneItem();
-                Debug.Log(itemTaken.ItemName);
+                Inventory.instance.AddItem(itemTaken);
+
                 
                 // Should play the "take" sound here 
                 
