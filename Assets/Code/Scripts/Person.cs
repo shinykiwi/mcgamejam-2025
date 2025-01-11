@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class Person : MonoBehaviour
@@ -8,24 +9,39 @@ public class Person : MonoBehaviour
     [SerializeField] public bool lostItemDoesNotExist = false;
     [SerializeField] public bool resolved;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
-
     // Update is called once per frame
     void Update()
     {
         timeLeft -= Time.deltaTime;
 
-        if(timeLeft < 0){
+        if(timeLeft <= 0){
             TimerOver();
         }
     }
 
-    private void TimerOver(){
+    private void Start()
+    {
+        throw new NotImplementedException();
+    }
 
+    /// <summary>
+    /// Animates the person walking into frame.
+    /// </summary>
+    private void WalkIn()
+    {
+        
+    }
+
+    /// <summary>
+    /// Animates the person walking out of frame.
+    /// </summary>
+    private void WalkOut()
+    {
+        
+    }
+    
+    private void TimerOver(){
+        // Person leaves
     }
 
     private bool ReturnedCorrectItem(){
