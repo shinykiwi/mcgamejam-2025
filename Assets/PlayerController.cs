@@ -50,7 +50,8 @@ public class PlayerController : MonoBehaviour
 
             if (hit.collider.CompareTag("Box"))
             {
-                BoxSpawner.instance.Unbox();
+                Box box = hit.collider.gameObject.GetComponent<Box>();
+                box.TakeOneItem();
             }
             
         }
