@@ -79,6 +79,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemData: {fileID: 0}
   color: 
+  material: {fileID: 2100000, guid: 2cc70026d4d317e4e8c05c350db5ef1b, type: 2}
+  coloredParts:
+  - {fileID: 8758747876686196634}
+  - {fileID: 4028325539215603890}
+  - {fileID: 2865525593242851430}
 --- !u!65 &6185867352859484177
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -151,3 +151,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemData: {fileID: 0}
   color: 
+  material: {fileID: 2100000, guid: 13d3db5ce700b0d48a2179ee98bd93c7, type: 2}
+  coloredParts:
+  - {fileID: 6749903057368215828}

@@ -9,7 +9,11 @@ public class PhysicalItem : MonoBehaviour
     
     public string ItemName => itemData.itemName;
     public Sprite Icon => itemData.icon;
+    
+    
+    public Material material;
 
+    public GameObject[] coloredParts; 
     //only used when picking up stuff
     private Vector3 itemSize;
     void Awake()
@@ -20,6 +24,9 @@ public class PhysicalItem : MonoBehaviour
     void Start()
     {
         itemSize = transform.localScale;
+        material = new Material(material);
+        material.color = ItemSpawner.instance.PossibleColors[color];
+        setColor();
     }
     
     public void PickUp(Transform playerHand)
@@ -34,6 +41,13 @@ public class PhysicalItem : MonoBehaviour
         
     }
 
+    void setColor()
+    {
+        foreach (GameObject coloredPart in coloredParts)
+        {
+            coloredPart.GetComponent<MeshRenderer>().material = material;
+        }
+    }
     
     public void Drop(Vector3 pos)
     {

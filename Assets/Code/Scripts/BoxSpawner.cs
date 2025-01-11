@@ -50,7 +50,7 @@ public class BoxSpawner : MonoBehaviour
 
     void Update()
     {
-        print(Time.time + " " +  boxSpawnTime);
+//        print(Time.time + " " +  boxSpawnTime);
         if (Time.time > boxSpawnTime)
         {
             boxSpawnTime = Time.time + boxSpawnInterval;

@@ -1779,7 +1779,7 @@ MonoBehaviour:
   - {fileID: 18053587}
   ui: {fileID: 2040236971}
   uiRect: {fileID: 0}
-  boxSpawnInterval: 5
+  boxSpawnInterval: 2
 --- !u!4 &1562399524
 Transform:
   m_ObjectHideFlags: 0
