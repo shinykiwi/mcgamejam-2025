@@ -1,10 +1,11 @@
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody))]
 public class PhysicalItem : MonoBehaviour
 {
     public ItemData itemData;
     public Color color; 
-    
+    public Material material;
     public void PickUp(Transform playerHand)
     {
         transform.SetParent(playerHand);
@@ -13,6 +14,10 @@ public class PhysicalItem : MonoBehaviour
         GetComponent<Rigidbody>().isKinematic = true;
     }
 
+    void setColor()
+    {
+        material.color = color;
+    }
     public void Drop()
     {
         transform.SetParent(null);
