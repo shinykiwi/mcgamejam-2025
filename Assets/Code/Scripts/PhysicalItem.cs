@@ -67,8 +67,10 @@ public class PhysicalItem : MonoBehaviour
     }
 
     
-    protected bool Equals(PhysicalItem other)
+    public bool ItemEquals(PhysicalItem other)
     {
+        //Debug.Log(ItemName == other.ItemName && color == other.color);
+        //Debug.Log(other.color + " " + color + " " + ItemName + " " + other.ItemName);
         return ItemName == other.ItemName && color == other.color;
     }
 

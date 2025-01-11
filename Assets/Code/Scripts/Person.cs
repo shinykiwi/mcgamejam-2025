@@ -41,6 +41,8 @@ public class Person : MonoBehaviour
             //penalty
         }
 
+        if(returnedItem != null)
+         Debug.Log("Lost item is " + lostItem.GetDescription() + "Returned item is " + returnedItem.GetDescription());
         PeopeSpawner.instance.SetPersonAtCounter(false);
         PeopeSpawner.instance.SetCurrentPerson(null);
         Debug.Log("Destroyed person");
@@ -91,7 +93,7 @@ public class Person : MonoBehaviour
 
     private bool ReturnedCorrectItem(){
 
-        if(returnedItem != null && returnedItem.Equals(lostItem)){
+        if(returnedItem != null && returnedItem.ItemEquals(lostItem)){
             return true;
         } else if (returnedItem == null && !Inventory.instance.GetItems().Contains(lostItem) && !BoxSpawner.instance.GetArrayItems().Contains(lostItem)){
             return true;
