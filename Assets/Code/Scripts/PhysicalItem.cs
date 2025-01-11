@@ -24,8 +24,6 @@ public class PhysicalItem : MonoBehaviour
     void Start()
     {
         itemSize = transform.localScale;
-        material = new Material(material);
-        material.color = ItemSpawner.instance.PossibleColors[color];
         setColor();
     }
     
@@ -43,6 +41,8 @@ public class PhysicalItem : MonoBehaviour
 
     void setColor()
     {
+        material = new Material(material);
+        material.color = ItemSpawner.instance.PossibleColors[color];
         foreach (GameObject coloredPart in coloredParts)
         {
             coloredPart.GetComponent<MeshRenderer>().material = material;
