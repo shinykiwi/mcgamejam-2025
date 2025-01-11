@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Phone
   m_EditorClassIdentifier: 
   itemName: Phone
-  description: A mobile phone
+  description: 
   icon: {fileID: 0}
-  prefab: {fileID: 8721710438497632044, guid: 511f9c002bfd9304b880af3b2b3e5d7b, type: 3}
+  prefab: {fileID: 6749903057368215828, guid: 2e64342fdbfd2be4d894e48149dea918, type: 3}

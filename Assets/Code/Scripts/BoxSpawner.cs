@@ -19,18 +19,19 @@ public class BoxSpawner : MonoBehaviour
     private TextMeshProUGUI text;
     private Box box;
 
-    private Queue<ItemData> popupQueue;
+    private Queue<PhysicalItem> popupQueue;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         boxObject = Instantiate(boxObject, transform);
         box = boxObject.GetComponent<Box>();
+        box.numItems = 5;
         image = ui.GetComponentInChildren<Image>();
         text = ui.GetComponentInChildren<TextMeshProUGUI>();
         
         // Initializing the queue
-        popupQueue = new Queue<ItemData>();
+        popupQueue = new Queue<PhysicalItem>();
         
         // Hide the UI at first
         ui.SetActive(false);
@@ -43,7 +44,7 @@ public class BoxSpawner : MonoBehaviour
         ui.SetActive(false);
     }
 
-    IEnumerator ShowPopup(ItemData item)
+    IEnumerator ShowPopup(PhysicalItem item)
     {
         ui.SetActive(true);
         SetUI(item);
@@ -81,8 +82,8 @@ public class BoxSpawner : MonoBehaviour
             // If there's already a box
             if (box && boxObject.activeSelf && box.IsHovering())
             {
-                ItemData itemTaken = box.TakeOneItem();
-                Debug.Log(itemTaken);
+                PhysicalItem itemTaken = box.TakeOneItem();
+                Debug.Log(itemTaken.ItemName);
                 
                 // Should play the "take" sound here 
                 
@@ -116,9 +117,9 @@ public class BoxSpawner : MonoBehaviour
         }
     }
 
-    private void SetUI(ItemData itemData)
+    private void SetUI(PhysicalItem item)
     {
-        image.sprite = itemData.icon;
-        text.text = itemData.name;
+        image.sprite = item.Icon;
+        text.text = item.ItemName;
     }
 }

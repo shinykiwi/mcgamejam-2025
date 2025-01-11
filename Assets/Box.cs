@@ -7,15 +7,14 @@ using Random = UnityEngine.Random;
 public class Box : MonoBehaviour
 {
     // Should really be randomly generated
-    private Stack<ItemData> items;
+    public int numItems;
     private bool isHovering = false;
 
     private void Start()
     {
-        items = new Stack<ItemData>();
-        InitializeBox();
-
+        
         // Delete this once you integrate with raycast
+        
         isHovering = true;
     }
 
@@ -26,23 +25,24 @@ public class Box : MonoBehaviour
 
     public void Reset()
     {
-        items.Clear();
-        InitializeBox();
+        numItems = 5;
+        
     }
 
     /// <summary>
     /// Takes one item from the box and returns it.
     /// </summary>
     /// <returns></returns>
-    public ItemData TakeOneItem()
+    public PhysicalItem TakeOneItem()
     {
+        numItems--;
+        return ItemSpawner.instance.GetRandomItem();
         
-        return items.Pop();
     }
 
     public bool NextExists()
     {
-        return items.Count > 0;
+        return numItems > 0;
     }
 
     /// <summary>
