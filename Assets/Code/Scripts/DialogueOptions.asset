@@ -17,8 +17,9 @@ MonoBehaviour:
     a _ cover. Yes, I see the irony. Please tell me you have it!|Hi, I left a book
     here. It has a _ hardback cover. I was right in the middle of it, too\u2026 of
     course this happens to me. "
-  - "Hey, my phone is missing. It\u2019s _ with a shattered screen. I\u2019d be thrilled
-    to get it back\u2026"
+  - "Hey, my phone is missing. It has  _  case on it. I\u2019d be thrilled to get
+    it back\u2026|Please help, I lost my phone. It looks like a phone... and it has
+    a _ case. Tell me you have it."
   - "My wallet! It\u2019s _, leather, kind of beat-up. If it\u2019s here, I\u2019ll
     breathe again. If not\u2026 I\u2019m in trouble.|So\u2026 I lost my brand new
     _ wallet. It\u2019s not even the money I\u2019m worried about. I just want my
@@ -40,6 +41,6 @@ MonoBehaviour:
     like I\u2019m mad\u2026 it\u2019s becoming a problem."
   - Hey! I lost my credit card... again. This is like my 15th one... Did you happen
     to find it? It was _.|Hello! I lost my credit card. I just got it too, it was
-    all _ and pretty.
+    all _ .
   - "Uh\u2026 hi! I lost some papers? Kind of important. I think I dropped them after
     a meeting\u2026 or maybe on the train? They were in a _ folder"
