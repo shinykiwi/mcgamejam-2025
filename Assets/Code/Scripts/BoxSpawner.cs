@@ -41,7 +41,6 @@ public class BoxSpawner : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        boxSpawnTime = 2;
         
         image = ui.GetComponentInChildren<Image>();
         text = ui.GetComponentInChildren<TextMeshProUGUI>();

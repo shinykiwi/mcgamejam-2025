@@ -11,7 +11,7 @@ public class PeopeSpawner : MonoBehaviour
 {
     public static PeopeSpawner instance;
     [SerializeField] private GameObject personPrefab;
-    [SerializeField] private GameObject speachBubble;
+    //[SerializeField] private GameObject speachBubble;
     GameObject currentPerson;
     [SerializeField] TextMeshPro dialogueTMP;
     [SerializeField] private String[] dialogueOptions;
@@ -22,43 +22,36 @@ public class PeopeSpawner : MonoBehaviour
     void Start()
     {
         instance = this;
-        currentPerson = Instantiate(personPrefab, new Vector3(7.5f, 1.8f, -11.7f), Quaternion.Euler(0,180,0));
+        StartCoroutine(spawnFirstPerson());
+        //currentPerson = Instantiate(personPrefab, new Vector3(7.5f, 1.8f, -11.7f), Quaternion.Euler(0,180,0));
     }
 
     // Update is called once per frame
     void Update()
     {
-        /*
         if(!personAtCounter){
-            StartCoroutine(spawnPerson());
+            spawnPerson();
         }
-        */
     }
+    IEnumerator spawnFirstPerson(){
 
-    
-
-
-    /*
-    private IEnumerator spawnPerson()
+        personAtCounter = true;
+        yield return new WaitForSeconds(2);
+        spawnPerson(); 
+    }
+    private void spawnPerson()
     {
         personAtCounter = true;
-        //yield return new WaitForSeconds(6);
         Debug.Log("Spawned person");
-        currentPerson = Instantiate(personPrefab, new Vector3(0.72f,2.11f,-11.13f), Quaternion.identity);
-        //speachBubble = currentPerson.transform.GetChild(0).gameObject;
-        //assign dialogue based on the lost object
-        //assignDialogue("Test dialogue bla bla bla bla bla bla bla bla bla bla");
-        //revealSpeachBubble();
-    }
-    */
-
-    void assignDialogue(String dialogue){
-        speachBubble.GetComponent<DialogueBubble>().SetDialogue(dialogue);
+        currentPerson = Instantiate(personPrefab, new Vector3(7.5f, 1.8f, -11.7f), Quaternion.identity);
     }
 
-    void revealSpeachBubble(){
-        speachBubble.SetActive(true);
-        speachBubble.GetComponent<DialogueBubble>().typeText = true;
+    public bool hasPerson(){
+        return currentPerson != null;
+    }
+
+    public bool IsStanding(){
+        return currentPerson.GetComponent<Person>().standing;
     }
 
     public GameObject GetCurrentPerson(){

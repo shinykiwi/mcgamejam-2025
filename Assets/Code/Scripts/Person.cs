@@ -11,38 +11,60 @@ public class Person : MonoBehaviour
     [SerializeField] private PhysicalItem returnedItem = null;
     [SerializeField] public bool lostItemDoesNotExist = false;
     [SerializeField] public bool resolved = false;
+    [SerializeField] private GameObject speachBubble;
+
+    public bool standing = false;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        //selectLostObject();
+        speachBubble = transform.GetChild(0).gameObject;
+        assignDialogue("Test dialogue bla bla bla bla bla bla bla bla bla bla");
+        selectLostObject();
         StartCoroutine(WalkIn());
-
     }
 
     // Update is called once per frame
     void Update()
     {
-        /*
-        timeLeft -= Time.deltaTime;
-  
-        if(timeLeft < 0){
-            TimerOver();
+        if (standing){
+            timeLeft -= Time.deltaTime;
+            
+            if(timeLeft < 0){
+                TimerOver();
+                standing = false;
+            }
         }
+        
 
         if(resolved){
             validateReturn();
+            resolved = false;
         }
-        */
     }
     
+    void assignDialogue(string dialogue){
+        speachBubble.GetComponent<DialogueBubble>().SetDialogue(dialogue);
+    }
+
+    void revealSpeachBubble(){
+        speachBubble.SetActive(true);
+        speachBubble.GetComponent<DialogueBubble>().typeText = true;
+    }
+
+    void disableSpeachBubble(){
+        speachBubble.SetActive(false);
+        speachBubble.GetComponent<DialogueBubble>().typeText = false;
+    }
+
     
     private IEnumerator WalkIn()
     {
         //yield return new WaitForSeconds(5);
         while (transform.position.x >  0)
         {
-            transform.position += Vector3.left * (Time.deltaTime * 5f);
+            transform.position += Vector3.left * (Time.deltaTime * 7f);
             yield return null;
         }
         transform.position = new Vector3(0, transform.position.y, transform.position.z);
@@ -56,7 +78,7 @@ public class Person : MonoBehaviour
         Vector3 endRotation = new Vector3(0, 270, 0);
         float elapsedTime = 0;
 
-        while (elapsedTime < 0.5f)
+        while (elapsedTime < 0.2f)
         {
             transform.eulerAngles = Vector3.Lerp(startRotation, endRotation, elapsedTime / 1);
             elapsedTime += Time.deltaTime;
@@ -64,18 +86,19 @@ public class Person : MonoBehaviour
         }
         
         transform.eulerAngles = endRotation;
-        
-        yield return new WaitForSeconds(1f);
-        StartCoroutine(turntoLeave());
+        standing = true;
+        revealSpeachBubble();
     }
 
     private IEnumerator turntoLeave()
     {
+
+        disableSpeachBubble();
         Vector3 startRotation = new Vector3(0, 270, 0);
         Vector3 endRotation = new Vector3(0, 180, 0);
         float elapsedTime = 0;
 
-        while (elapsedTime < 0.5f)
+        while (elapsedTime < 0.2f)
         {
             transform.eulerAngles = Vector3.Lerp(startRotation, endRotation, elapsedTime / 1);
             elapsedTime += Time.deltaTime;
@@ -89,13 +112,17 @@ public class Person : MonoBehaviour
     private IEnumerator walkOut()
     {
         float elapsedTime = 0;
-        while (elapsedTime < 4f)
+        while (elapsedTime < 1f)
         {
-            transform.Translate(Vector3.right * (Time.deltaTime * 5f));
+            transform.Translate(Vector3.right * (Time.deltaTime*7f));
             elapsedTime += Time.deltaTime;
             yield return null;
         }
 
+        Debug.Log("Destroyed person");
+        PeopeSpawner.instance.SetPersonAtCounter(false);
+        PeopeSpawner.instance.SetCurrentPerson(null);
+        Destroy(this.gameObject);
     }
 
 
@@ -110,11 +137,9 @@ public class Person : MonoBehaviour
         }
 
         if(returnedItem != null)
-         Debug.Log("Lost item is " + lostItem.GetDescription() + "Returned item is " + returnedItem.GetDescription());
-        PeopeSpawner.instance.SetPersonAtCounter(false);
-        PeopeSpawner.instance.SetCurrentPerson(null);
-        Debug.Log("Destroyed person");
-        Destroy(this.gameObject);
+        Debug.Log("Lost item is " + lostItem.GetDescription() + "Returned item is " + returnedItem.GetDescription());
+        
+        StartCoroutine(turntoLeave());
     }
 
     void selectLostObject(){
@@ -122,16 +147,14 @@ public class Person : MonoBehaviour
        int randomValue = UnityEngine.Random.Range(0, 100); 
        List<PhysicalItem> itemsInInventory = Inventory.instance.GetItems();
 
-        if (randomValue < 85 && itemsInInventory.Count > 0)
+        if (randomValue < 80 && itemsInInventory.Count > 0)
         {
             Debug.Log("Item picked from inventory");
             //pick from item from inventory and assign to person
-            if(Inventory.instance != null){
-               lostItem = itemsInInventory[Random.Range(0, itemsInInventory.Count)];
-            }
+            lostItem = itemsInInventory[Random.Range(0, itemsInInventory.Count)];
 
         }
-        else if (randomValue < -1 && BoxSpawner.instance.GetArrayItems().Length > 0)
+        else if (randomValue < 95 && BoxSpawner.instance.GetArrayItems().Length > 0)
         {
             Debug.Log("Item picked from box");
             //pick item from boxes and assign to person
@@ -154,9 +177,9 @@ public class Person : MonoBehaviour
     }
 
     void LeaveCounter(){
-        PeopeSpawner.instance.SetPersonAtCounter(false);
+        // PeopeSpawner.instance.SetPersonAtCounter(false);
         Debug.Log("Time up Destroyed person");
-        Destroy(this.gameObject);
+        StartCoroutine(turntoLeave());
     }
 
     private bool ReturnedCorrectItem(){

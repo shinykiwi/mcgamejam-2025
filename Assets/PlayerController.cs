@@ -24,7 +24,9 @@ public class PlayerController : MonoBehaviour
                     break;
                 
                 case 1:
-                    ReturnItem();
+                    if (customerExists() && customerIsStanding()){
+                        giveItemBack();
+                    }
                     break;
                 
                 case 2:
@@ -42,8 +44,27 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+
+    private bool customerExists(){
+        return PeopeSpawner.instance.hasPerson();
+    }
+
+    private bool customerIsStanding(){
+        return PeopeSpawner.instance.IsStanding();
+    }
+
+    private void giveItemBack(){
+        Person currentPerson = PeopeSpawner.instance.GetCurrentPerson().GetComponent<Person>();
+        currentPerson.SetReturnedObject(itemHeld);
+        currentPerson.Resolve();
+        if(itemHeld != null)
+            Destroy(itemHeld.gameObject);
+
+        itemHeld = null;
+    }
     private void ReturnItem()
     {
+        print("CLICKY");
         if(PeopeSpawner.instance.GetCurrentPerson() != null){
             Person currentPerson = PeopeSpawner.instance.GetCurrentPerson().GetComponent<Person>();
             currentPerson.SetReturnedObject(itemHeld);
