@@ -5,7 +5,21 @@ using Random = UnityEngine.Random;
 [RequireComponent(typeof(Rigidbody))]
 public class PhysicalItem : MonoBehaviour
 {
-    
+    private void OnMouseEnter()
+    {
+        ItemSpawner.instance.followTextScript.gameObject.SetActive(true);
+        //ItemSpawner.instance.followTextScript.enabled = true;
+        ItemSpawner.instance.followText.text = GetDescription();
+        
+
+    }
+
+    private void OnMouseExit()
+    {
+        ItemSpawner.instance.followTextScript.gameObject.SetActive(false);
+        //ItemSpawner.instance.followTextScript.enabled = false;
+    }
+
     public ItemData itemData;
     public string color;
     
@@ -63,7 +77,7 @@ public class PhysicalItem : MonoBehaviour
 
     public string GetDescription()
     {
-        return "a " + color + " " + ItemName;
+        return color + " " + ItemName;
     }
 
     

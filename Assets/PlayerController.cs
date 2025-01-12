@@ -53,28 +53,6 @@ public class PlayerController : MonoBehaviour
         {
             giveNothing();
         }
-
-        if (ViewManager.Instance.GetCamView() == 0)
-        {
-            Ray ray = cam.ScreenPointToRay(Input.mousePosition);
-            if (Physics.Raycast(ray, out RaycastHit hit) && hit.collider.CompareTag("Box"))
-            {
-                
-                Outline box = hit.collider.gameObject.GetComponent<Outline>();
-                if (currentlyGlowingBox != null && box != currentlyGlowingBox )
-                {
-                    currentlyGlowingBox.enabled = false;
-                    
-                }
-                currentlyGlowingBox = box;
-                currentlyGlowingBox.enabled = true;
-            }
-            else if (currentlyGlowingBox != null)
-            {
-                currentlyGlowingBox.enabled = false;
-                currentlyGlowingBox = null;
-            }
-        }
     }
 
 
