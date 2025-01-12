@@ -121,6 +121,7 @@ public class PlayerController : MonoBehaviour
             {
                 Box box = hit.collider.gameObject.GetComponent<Box>();
                 box.TakeOneItem();
+                // play audo
             }
             
         }

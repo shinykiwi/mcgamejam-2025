@@ -8,8 +8,8 @@ public class Box : MonoBehaviour
 {
     private Stack<PhysicalItem> items;
     private bool isHovering = false;
-
-
+    
+    private AudioSource audioSource;
     public PhysicalItem[] GetArrayItems()
     {
         return items.ToArray();
@@ -18,6 +18,8 @@ public class Box : MonoBehaviour
     {
         items = new Stack<PhysicalItem>();
         isHovering = true;
+        audioSource = GetComponent<AudioSource>();
+
     }
 
     public void InitializeBox(int numItems = 5)
@@ -43,6 +45,12 @@ public class Box : MonoBehaviour
     
     public void TakeOneItem()
     {
+        // Play audio
+        if (!audioSource.isPlaying)
+        {
+            audioSource.Play();
+        }
+        
         //get item
         PhysicalItem item = items.Pop();
         
