@@ -13,7 +13,13 @@ public class Box : MonoBehaviour
 
     void OnMouseEnter()
     {
+        if (items.Count == 0)
+        {
+            OnMouseExit();
+            return;
+        }
         isHovering = true;
+        
         GetComponent<Outline>().enabled = true;
         ItemSpawner.instance.followTextScript.gameObject.SetActive(true);
         ItemSpawner.instance.followText.text = items.Count + " Items Left";

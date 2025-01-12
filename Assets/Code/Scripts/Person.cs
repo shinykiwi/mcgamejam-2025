@@ -175,14 +175,14 @@ public class Person : MonoBehaviour
        float randomValue = Random.value;
        
 
-        if (randomValue < 0.40 && Inventory.instance.hasItem())
+        if (randomValue < 0.50 && Inventory.instance.hasItem())
         {
             Debug.Log("Item picked from inventory");
             //pick from item from inventory and assign to person
             lostItem = Inventory.instance.GetRandomItem();
 
         }
-        else if (randomValue < 0.80f)
+        else if (randomValue < 0.90f)
         {
             if (BoxSpawner.instance.GetArrayItems().Length > 0)
             {
