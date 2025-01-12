@@ -35,7 +35,7 @@ public class PeopeSpawner : MonoBehaviour
     IEnumerator spawnFirstPerson(){
 
         personAtCounter = true;
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(3);
         spawnPerson(); 
     }
     private void spawnPerson()

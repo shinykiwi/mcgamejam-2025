@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using UnityEngine.UIElements;
 using Unity.VisualScripting;
 using System.Linq;
+using TMPro;
+
 public class Person : MonoBehaviour
 {
     [SerializeField] private PhysicalItem lostItem;
@@ -12,8 +14,8 @@ public class Person : MonoBehaviour
     [SerializeField] public bool lostItemDoesNotExist = false;
     [SerializeField] public bool resolved = false;
     [SerializeField] private GameObject speachBubble;
-
     [SerializeField] private DialogueOptions dialogueOptions;
+    [SerializeField] private TMP_Text timerText;
     public bool standing = false;
 
 
@@ -34,6 +36,8 @@ public class Person : MonoBehaviour
             if(timeLeft < 0){
                 TimerOver();
                 standing = false;
+            } else {
+                timerText.text = Mathf.FloorToInt(timeLeft).ToString();
             }
         }
         
@@ -76,12 +80,12 @@ public class Person : MonoBehaviour
     private IEnumerator WalkIn()
     {
         //yield return new WaitForSeconds(5);
-        while (transform.position.x >  0)
+        while (transform.position.x >  1.15)
         {
             transform.position += Vector3.left * (Time.deltaTime * 7f);
             yield return null;
         }
-        transform.position = new Vector3(0, transform.position.y, transform.position.z);
+        transform.position = new Vector3(1.15f, transform.position.y, transform.position.z);
         
         StartCoroutine(TurnToTalk());
     }
