@@ -518,7 +518,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 321768557}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f9dfa5b682dcd46bda6128250e975f58, type: 3}
   m_Name: 
@@ -1122,7 +1122,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 779287006}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f9dfa5b682dcd46bda6128250e975f58, type: 3}
   m_Name: 
@@ -1524,7 +1524,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e1af1c4362a2ad47b117e8e4e406efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  personPrefab: {fileID: 1165860327040038439, guid: 6cb28264a1a2e7e42ad2d715ba4e1c12, type: 3}
+  personPrefab: {fileID: 6400260991515501600, guid: 91858dfff6e56b24d9974b2d6bfd2362, type: 3}
   speachBubble: {fileID: 0}
   dialogueTMP: {fileID: 0}
   dialogueOptions: []
@@ -1803,8 +1803,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 961739749}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.09107223, y: 0.7012174, z: -0.09107223, w: 0.7012174}
-  m_LocalPosition: {x: 0.26, y: 2.4180002, z: -7.4049997}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalPosition: {x: 0.26, y: 2.4180002, z: -6.37}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2138,6 +2138,7 @@ MonoBehaviour:
   ui: {fileID: 2040236971}
   uiRect: {fileID: 0}
   boxSpawnInterval: 2
+  boxSpawnTime: 0
 --- !u!4 &1562399524
 Transform:
   m_ObjectHideFlags: 0

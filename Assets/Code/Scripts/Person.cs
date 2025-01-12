@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.UIElements;
@@ -14,12 +15,15 @@ public class Person : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        selectLostObject();
+        //selectLostObject();
+        StartCoroutine(WalkIn());
+
     }
 
     // Update is called once per frame
     void Update()
     {
+        /*
         timeLeft -= Time.deltaTime;
   
         if(timeLeft < 0){
@@ -29,7 +33,71 @@ public class Person : MonoBehaviour
         if(resolved){
             validateReturn();
         }
+        */
     }
+    
+    
+    private IEnumerator WalkIn()
+    {
+        //yield return new WaitForSeconds(5);
+        while (transform.position.x >  0)
+        {
+            transform.position += Vector3.left * (Time.deltaTime * 5f);
+            yield return null;
+        }
+        transform.position = new Vector3(0, transform.position.y, transform.position.z);
+        
+        StartCoroutine(TurnToTalk());
+    }
+    
+    private IEnumerator TurnToTalk()
+    {
+        Vector3 startRotation = new Vector3(0, 180, 0);
+        Vector3 endRotation = new Vector3(0, 270, 0);
+        float elapsedTime = 0;
+
+        while (elapsedTime < 0.5f)
+        {
+            transform.eulerAngles = Vector3.Lerp(startRotation, endRotation, elapsedTime / 1);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+        
+        transform.eulerAngles = endRotation;
+        
+        yield return new WaitForSeconds(1f);
+        StartCoroutine(turntoLeave());
+    }
+
+    private IEnumerator turntoLeave()
+    {
+        Vector3 startRotation = new Vector3(0, 270, 0);
+        Vector3 endRotation = new Vector3(0, 180, 0);
+        float elapsedTime = 0;
+
+        while (elapsedTime < 0.5f)
+        {
+            transform.eulerAngles = Vector3.Lerp(startRotation, endRotation, elapsedTime / 1);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+        
+        transform.eulerAngles = endRotation;
+        StartCoroutine(walkOut());
+    }
+
+    private IEnumerator walkOut()
+    {
+        float elapsedTime = 0;
+        while (elapsedTime < 4f)
+        {
+            transform.Translate(Vector3.right * (Time.deltaTime * 5f));
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+    }
+
 
     private void validateReturn()
     {

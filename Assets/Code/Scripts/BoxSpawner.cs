@@ -21,12 +21,16 @@ public class BoxSpawner : MonoBehaviour
     [SerializeField] private RectTransform uiRect;
     private Image image;
     private TextMeshProUGUI text;
+
+    
+    
     
     public Queue<PhysicalItem> popupQueue;
     
     //Box spawn timers
     [SerializeField]
     private float boxSpawnInterval;
+    [SerializeField]
     private float boxSpawnTime;
 
 

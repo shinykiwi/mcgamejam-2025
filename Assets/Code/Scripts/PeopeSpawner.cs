@@ -22,27 +22,35 @@ public class PeopeSpawner : MonoBehaviour
     void Start()
     {
         instance = this;
+        currentPerson = Instantiate(personPrefab, new Vector3(7.5f, 1.8f, -11.7f), Quaternion.Euler(0,180,0));
     }
 
     // Update is called once per frame
     void Update()
     {
+        /*
         if(!personAtCounter){
             StartCoroutine(spawnPerson());
         }
+        */
     }
 
+    
+
+
+    /*
     private IEnumerator spawnPerson()
     {
         personAtCounter = true;
-        yield return new WaitForSeconds(6);
+        //yield return new WaitForSeconds(6);
         Debug.Log("Spawned person");
         currentPerson = Instantiate(personPrefab, new Vector3(0.72f,2.11f,-11.13f), Quaternion.identity);
-        speachBubble = currentPerson.transform.GetChild(0).gameObject;
+        //speachBubble = currentPerson.transform.GetChild(0).gameObject;
         //assign dialogue based on the lost object
-        assignDialogue("Test dialogue bla bla bla bla bla bla bla bla bla bla");
-        revealSpeachBubble();
+        //assignDialogue("Test dialogue bla bla bla bla bla bla bla bla bla bla");
+        //revealSpeachBubble();
     }
+    */
 
     void assignDialogue(String dialogue){
         speachBubble.GetComponent<DialogueBubble>().SetDialogue(dialogue);
