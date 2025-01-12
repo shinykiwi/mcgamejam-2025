@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -14,8 +15,10 @@ public class ItemSpawner : MonoBehaviour
     public float spawnInterval;
 
     private List<string> colorList;
-     
-    
+
+
+    public  MouseFollow followTextScript;
+    public TextMeshProUGUI followText;
     
     void Awake()
     {

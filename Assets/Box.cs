@@ -10,6 +10,21 @@ public class Box : MonoBehaviour
     private bool isHovering = false;
     
     private AudioSource audioSource;
+
+    void OnMouseEnter()
+    {
+        isHovering = true;
+        GetComponent<Outline>().enabled = true;
+        ItemSpawner.instance.followTextScript.gameObject.SetActive(true);
+        ItemSpawner.instance.followText.text = items.Count + " Items Left";
+    }
+
+    void OnMouseExit()
+    {
+        isHovering = false;
+        GetComponent<Outline>().enabled = false;
+        ItemSpawner.instance.followTextScript.gameObject.SetActive(false);
+    }
     public PhysicalItem[] GetArrayItems()
     {
         return items.ToArray();
@@ -53,7 +68,10 @@ public class Box : MonoBehaviour
         
         //get item
         PhysicalItem item = items.Pop();
-        
+        if (isHovering)
+        {
+            OnMouseEnter();
+        }
         //Give item to Inventory and BoxSpawner
         Inventory.instance.AddItem(item);
         BoxSpawner.instance.popupQueue.Enqueue(item);
