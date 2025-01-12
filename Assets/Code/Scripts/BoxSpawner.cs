@@ -21,9 +21,6 @@ public class BoxSpawner : MonoBehaviour
     [SerializeField] private RectTransform uiRect;
     private Image image;
     private TextMeshProUGUI text;
-
-    
-    
     
     public Queue<PhysicalItem> popupQueue;
     
@@ -32,7 +29,9 @@ public class BoxSpawner : MonoBehaviour
     private float boxSpawnInterval;
     [SerializeField]
     private float boxSpawnTime;
-
+    [SerializeField] private float baseSpawnInterval = 10f; 
+    [SerializeField] private float minSpawnInterval = 1f;  
+    [SerializeField] float intervalDecreaseRate = 0.5f; 
 
     void Awake()
     {
@@ -60,11 +59,11 @@ public class BoxSpawner : MonoBehaviour
 //        print(Time.time + " " +  boxSpawnTime);
         if (Time.time > boxSpawnTime)
         {
-            
+            boxSpawnInterval = Mathf.Max(baseSpawnInterval - PeopeSpawner.instance.peopleSpawned  * intervalDecreaseRate, minSpawnInterval);
             boxSpawnTime = Time.time + boxSpawnInterval;
             spawnBox();
             
-        }   
+        }
     }
 
     public PhysicalItem GetRandomItemFromBox()

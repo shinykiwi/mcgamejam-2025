@@ -262,4 +262,8 @@ public class Person : MonoBehaviour
         GameObject model = 
             Instantiate(models[Random.Range(0, models.Length - 1)], modelSpawnPoint.transform);
     }
+
+    public void SetTimeLeft(float time){
+        timeLeft = time;
+    }
 }

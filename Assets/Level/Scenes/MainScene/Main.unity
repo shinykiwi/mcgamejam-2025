@@ -1198,6 +1198,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   personPrefab: {fileID: 1165860327040038439, guid: 6cb28264a1a2e7e42ad2d715ba4e1c12, type: 3}
   dialogueTMP: {fileID: 0}
+  minTimer: 15
+  maxTimer: 30
+  timerDecreaseRate: 2
+  maxTimerLimit: 10
+  minTimerLimit: 5
+  peopleSpawned: 0
 --- !u!4 &593105394 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7612842637418015200, guid: 20aa3517242de3242bd8b49d653da200, type: 3}
@@ -2924,6 +2930,9 @@ MonoBehaviour:
   uiRect: {fileID: 0}
   boxSpawnInterval: 10
   boxSpawnTime: 0
+  baseSpawnInterval: 10
+  minSpawnInterval: 5
+  intervalDecreaseRate: 0.5
 --- !u!4 &1562399524
 Transform:
   m_ObjectHideFlags: 0
