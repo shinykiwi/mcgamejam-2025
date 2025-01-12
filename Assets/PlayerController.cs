@@ -7,10 +7,15 @@ public class PlayerController : MonoBehaviour
     public PhysicalItem itemHeld;    
     private Camera cam;
 
+    private AudioSource audioSource;
+    public AudioClip putBackClip;
+    public AudioClip pickUpClip;
+
     private Outline currentlyGlowingBox;
     void Start()
     {
         cam = GetComponent<Camera>();
+        audioSource = GetComponent<AudioSource>();
     }
     
     private void Update()
@@ -137,7 +142,13 @@ public class PlayerController : MonoBehaviour
             if (hit.collider.name == "InventoryTable")
             {
                 itemHeld.Drop(hit.point + Vector3.up*0.1f);
-                itemHeld = null;                
+                itemHeld = null;
+                
+                audioSource.clip = putBackClip;
+                if (!audioSource.isPlaying)
+                {
+                   audioSource.Play(); 
+                }
             }
             
         }
@@ -157,6 +168,13 @@ public class PlayerController : MonoBehaviour
             {
                 itemHeld = item;
                 item.PickUp(handPosition);
+                
+                audioSource.clip = pickUpClip;
+                if (!audioSource.isPlaying)
+                {
+                    audioSource.Play(); 
+                }
+                
             }
         }
     }
