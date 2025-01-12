@@ -104,7 +104,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: Timer
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 0f856f6d96d334b19a29ab1050e0919c, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -173,7 +173,7 @@ MonoBehaviour:
   _SortingLayer: 0
   _SortingLayerID: 0
   _SortingOrder: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_renderer: {fileID: 2215378208342310219}
   m_maskType: 0
 --- !u!1 &1165860327040038439
@@ -185,7 +185,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8759322463096552793}
-  - component: {fileID: 8220204615661471968}
   - component: {fileID: 2513461773101658074}
   - component: {fileID: 4376763016086486521}
   - component: {fileID: 668843794218408623}
@@ -210,16 +209,9 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1393534958808935886}
+  - {fileID: 8112929243556478676}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &8220204615661471968
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1165860327040038439}
-  m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!23 &2513461773101658074
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -300,6 +292,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f8fddf695e893e44a9bd2dc378fdd54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  models:
+  - {fileID: 6507020101619459047, guid: e627b674a56e74949b53b9aea0f0f7a6, type: 3}
+  - {fileID: 5686045517970361297, guid: d40a8f45325788a498dadc9c57bf5294, type: 3}
+  - {fileID: 4607145980797917006, guid: 77a880620efd5b248a254d8698add49a, type: 3}
+  - {fileID: 5739977040118625880, guid: 64b9918e361eb5744beda46118a038fa, type: 3}
+  modelSpawnPoint: {fileID: 2493852341542439699}
   lostItem: {fileID: 0}
   timeLeft: 60
   returnedItem: {fileID: 0}
@@ -309,6 +307,37 @@ MonoBehaviour:
   dialogueOptions: {fileID: 11400000, guid: db370c306a43e124bab0f90b5764e4ff, type: 2}
   timerText: {fileID: 2769203282643013348}
   standing: 0
+--- !u!1 &2493852341542439699
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8112929243556478676}
+  m_Layer: 0
+  m_Name: Model
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8112929243556478676
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2493852341542439699}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8759322463096552793}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!1 &3570594365298775955
 GameObject:
   m_ObjectHideFlags: 0
@@ -413,7 +442,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: Sample text
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 0f856f6d96d334b19a29ab1050e0919c, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -482,7 +511,7 @@ MonoBehaviour:
   _SortingLayer: 0
   _SortingLayerID: 0
   _SortingOrder: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_renderer: {fileID: 5554064331343765419}
   m_maskType: 0
 --- !u!1 &5431377058070074632

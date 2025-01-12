@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using System.Collections.Generic;
@@ -5,9 +6,14 @@ using UnityEngine.UIElements;
 using Unity.VisualScripting;
 using System.Linq;
 using TMPro;
+using Random = UnityEngine.Random;
 
 public class Person : MonoBehaviour
 {
+    // Possible models
+    [SerializeField] private GameObject[] models;
+    [SerializeField] private GameObject modelSpawnPoint;
+    
     [SerializeField] private PhysicalItem lostItem;
     [SerializeField] private float timeLeft = 60;
     [SerializeField] private PhysicalItem returnedItem = null;
@@ -247,5 +253,10 @@ public class Person : MonoBehaviour
 
     public void Resolve(){
         resolved = true;
+    }
+
+    private void OnEnable()
+    {
+        Instantiate(models[Random.Range(0, models.Length - 1)], modelSpawnPoint.transform);
     }
 }
