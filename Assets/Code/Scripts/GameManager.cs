@@ -31,7 +31,7 @@ public class GameManager : MonoBehaviour
         score += _score;
         scoreText.text = "Score: " + score;
         scoreRect.DOPunchAnchorPos(Vector2.down * 4, 0.8f, 5);
-        if (!audioSource.isPlaying)
+        if (!audioSource.isPlaying && score != 0)
         {
            audioSource.Play(); 
         }
