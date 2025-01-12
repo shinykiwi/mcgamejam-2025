@@ -13,6 +13,7 @@ public class Person : MonoBehaviour
     [SerializeField] public bool resolved = false;
     [SerializeField] private GameObject speachBubble;
 
+    [SerializeField] private DialogueOptions dialogueOptions;
     public bool standing = false;
 
 
@@ -20,7 +21,6 @@ public class Person : MonoBehaviour
     void Start()
     {
         speachBubble = transform.GetChild(0).gameObject;
-        assignDialogue("Test dialogue bla bla bla bla bla bla bla bla bla bla");
         selectLostObject();
         StartCoroutine(WalkIn());
     }
@@ -44,8 +44,22 @@ public class Person : MonoBehaviour
         }
     }
     
-    void assignDialogue(string dialogue){
-        speachBubble.GetComponent<DialogueBubble>().SetDialogue(dialogue);
+    void assignDialogue(string selectedLostObject, string color){
+
+        string currentItemDialogues = dialogueOptions.GetDialogueForObject(selectedLostObject);
+        if (currentItemDialogues != null)
+        {
+            string[] variations = currentItemDialogues.Split('|');
+            string selectedDialogue = variations[Random.Range(0, variations.Length)];
+            string finalDialogue = selectedDialogue.Replace("_", color);
+
+            Debug.Log("Assigned Dialogue: " + finalDialogue);
+            speachBubble.GetComponent<DialogueBubble>().SetDialogue(finalDialogue);
+        }
+        else
+        {
+            Debug.Log("No dialogue available for " + selectedLostObject);
+        }
     }
 
     void revealSpeachBubble(){
@@ -168,7 +182,7 @@ public class Person : MonoBehaviour
         }
 
         Debug.Log("Lost item is " + lostItem.GetDescription());
-        
+        assignDialogue(lostItem.ItemName, lostItem.color);
     }
 
     private void TimerOver(){

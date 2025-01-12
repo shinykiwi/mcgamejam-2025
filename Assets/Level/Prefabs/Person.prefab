@@ -129,6 +129,9 @@ MonoBehaviour:
   returnedItem: {fileID: 0}
   lostItemDoesNotExist: 0
   resolved: 0
+  speachBubble: {fileID: 0}
+  dialogueOptions: {fileID: 11400000, guid: db370c306a43e124bab0f90b5764e4ff, type: 2}
+  standing: 0
 --- !u!1 &3570594365298775955
 GameObject:
   m_ObjectHideFlags: 0
@@ -296,7 +299,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 3.9423823, y: -3.6905239, z: -30.158278, w: -5.8328004}
+  m_margin: {x: 1.604805, y: -6.198002, z: -33.30068, w: -8.091387}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   _SortingLayer: 0
@@ -332,7 +335,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5431377058070074632}
   m_LocalRotation: {x: 0.5, y: 0.5, z: 0.5, w: 0.5}
-  m_LocalPosition: {x: 0, y: 0, z: 1.29}
+  m_LocalPosition: {x: 0, y: 0, z: 1.47}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -393,7 +396,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 1
-  m_Size: {x: 1, y: 2}
+  m_Size: {x: 1.2, y: 2.1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -428,4 +431,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54f7949d54defb54fa49f61984efcd26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  typeWriterSpeed: 20
+  typeWriterSpeed: 60

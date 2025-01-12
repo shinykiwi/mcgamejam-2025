@@ -13,14 +13,33 @@ MonoBehaviour:
   m_Name: DialogueOptions
   m_EditorClassIdentifier: 
   dialogues:
-  - "Hi, um\u2026 I think I lost something. It's really important. Do you happen
-    to have a _"
-  - "Excuse me, I lost something very important here. It\u2019s a _ . I can\u2019t
-    live without it. Have you seen it?"
-  - "I believe I left my _ here. It\u2019s very special to me."
-  - 'Hello! I''ve lost my laptop and I have a deadline tomorrow! Have you seen it?
-    It''s _ |Hey, have you seen a laptop? It''s _ and kinda beat up. '
+  - "Hi, um\u2026 I lost my book. It\u2019s called How to Stop Losing Things with
+    a _ cover. Yes, I see the irony. Please tell me you have it!|Hi, I left a book
+    here. It has a _ hardback cover. I was right in the middle of it, too\u2026 of
+    course this happens to me. "
+  - "Hey, my phone is missing. It\u2019s _ with a shattered screen. I\u2019d be thrilled
+    to get it back\u2026"
+  - "My wallet! It\u2019s _, leather, kind of beat-up. If it\u2019s here, I\u2019ll
+    breathe again. If not\u2026 I\u2019m in trouble.|So\u2026 I lost my brand new
+    _ wallet. It\u2019s not even the money I\u2019m worried about. I just want my
+    cool new wallet back."
+  - "Hi! I lost a ring. It\u2019s small, _, and sentimental. I don\u2019t suppose
+    someone turned it in?|I\u2019m hoping someone found a _ ring? It was my grandmother\u2019s.
+    I can\u2019t believe I lost it\u2026 she\u2019ll haunt me if I don\u2019t get
+    it back."
+  - "Hi. I\u2019m looking for a single key. It's _, plain\u2026 but it unlocks my
+    bike, and I need it to get home!|I lost my _ key. I\u2019ll be locked out of
+    my apartment without it!"
+  - "Did someone turn in a pair of _  headphones? Mine went missing, and I\u2019ve
+    been stuck with the sounds of the real world. It\u2019s terrifying|Headphones.
+    They're _. Noise-canceling. Please tell me you have them, or I\u2019m going to
+    have to listen to strangers talk about their day."
+  - "I\u2019m looking for my glasses. Round frames, _. If you found them, thank you,
+    because I litterally can't see anything right now.|You wouldn\u2019t happen to
+    have seen a pair of _ glasses, would you? I\u2019ve been squinting at everyone
+    like I\u2019m mad\u2026 it\u2019s becoming a problem."
   - Hey! I lost my credit card... again. This is like my 15th one... Did you happen
-    to find it? It was _.|
-  - Hey! I lost my credit card... again. This is like my 15th one... Did you happen
-    to find it? It was _.|
+    to find it? It was _.|Hello! I lost my credit card. I just got it too, it was
+    all _ and pretty.
+  - "Uh\u2026 hi! I lost some papers? Kind of important. I think I dropped them after
+    a meeting\u2026 or maybe on the train? They were in a _ folder"

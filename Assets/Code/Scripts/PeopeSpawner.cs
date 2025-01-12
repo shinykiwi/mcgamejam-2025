@@ -14,7 +14,6 @@ public class PeopeSpawner : MonoBehaviour
     //[SerializeField] private GameObject speachBubble;
     GameObject currentPerson;
     [SerializeField] TextMeshPro dialogueTMP;
-    [SerializeField] private String[] dialogueOptions;
 
     private bool personAtCounter = false;
 
