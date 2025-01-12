@@ -175,7 +175,7 @@ public class Person : MonoBehaviour
        float randomValue = Random.value;
        
 
-        if (randomValue < 0.50 && Inventory.instance.hasItem())
+        if (randomValue < 0.35 && Inventory.instance.hasItem())
         {
             Debug.Log("Item picked from inventory");
             //pick from item from inventory and assign to person

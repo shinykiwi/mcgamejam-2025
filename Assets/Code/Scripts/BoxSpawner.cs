@@ -30,7 +30,7 @@ public class BoxSpawner : MonoBehaviour
     [SerializeField]
     private float boxSpawnTime;
     [SerializeField] private float baseSpawnInterval = 10f; 
-    [SerializeField] private float minSpawnInterval = 1f;  
+    [SerializeField] private float minSpawnInterval = 3f;  
     [SerializeField] float intervalDecreaseRate = 0.5f; 
 
     void Awake()
