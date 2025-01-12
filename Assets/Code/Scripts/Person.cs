@@ -257,6 +257,7 @@ public class Person : MonoBehaviour
 
     private void OnEnable()
     {
-        Instantiate(models[Random.Range(0, models.Length - 1)], modelSpawnPoint.transform);
+        GameObject model = 
+            Instantiate(models[Random.Range(0, models.Length - 1)], modelSpawnPoint.transform);
     }
 }
