@@ -42,7 +42,7 @@ public class PeopeSpawner : MonoBehaviour
     {
         personAtCounter = true;
         Debug.Log("Spawned person");
-        currentPerson = Instantiate(personPrefab, new Vector3(7.5f, 1.8f, -11.7f), Quaternion.identity);
+        currentPerson = Instantiate(personPrefab, new Vector3(7.5f, 1.8f, -11.7f), Quaternion.Euler(0,180,0));
     }
 
     public bool hasPerson(){

@@ -95,16 +95,17 @@ public class Person : MonoBehaviour
         
         StartCoroutine(TurnToTalk());
     }
-    
+
+    private float rotateTime = 0.5f;
     private IEnumerator TurnToTalk()
     {
-        Vector3 startRotation = new Vector3(0, 180, 0);
-        Vector3 endRotation = new Vector3(0, 270, 0);
+        Vector3 startRotation = transform.rotation.eulerAngles;
+        Vector3 endRotation = startRotation + new Vector3(0, 90, 0); 
         float elapsedTime = 0;
 
-        while (elapsedTime < 0.2f)
+        while (elapsedTime < rotateTime)
         {
-            transform.eulerAngles = Vector3.Lerp(startRotation, endRotation, elapsedTime / 1);
+            transform.eulerAngles = Vector3.Lerp(startRotation, endRotation, elapsedTime / rotateTime);
             elapsedTime += Time.deltaTime;
             yield return null;
         }
@@ -116,17 +117,16 @@ public class Person : MonoBehaviour
 
     private IEnumerator turntoLeave()
     {
-        PeopeSpawner.instance.SetPersonAtCounter(false);
-        PeopeSpawner.instance.SetCurrentPerson(null);
+        
         standing = false;
         disableSpeachBubble();
-        Vector3 startRotation = new Vector3(0, 270, 0);
-        Vector3 endRotation = new Vector3(0, 180, 0);
+        Vector3 startRotation = transform.rotation.eulerAngles;
+        Vector3 endRotation = startRotation - new Vector3(0, 90, 0);
         float elapsedTime = 0;
 
-        while (elapsedTime < 0.2f)
+        while (elapsedTime < rotateTime)
         {
-            transform.eulerAngles = Vector3.Lerp(startRotation, endRotation, elapsedTime / 1);
+            transform.eulerAngles = Vector3.Lerp(startRotation, endRotation, elapsedTime / rotateTime);
             elapsedTime += Time.deltaTime;
             yield return null;
         }
@@ -145,6 +145,8 @@ public class Person : MonoBehaviour
             yield return null;
         }
 
+        PeopeSpawner.instance.SetPersonAtCounter(false);
+        PeopeSpawner.instance.SetCurrentPerson(null);
         Debug.Log("Destroyed person");
         Destroy(this.gameObject);
     }
