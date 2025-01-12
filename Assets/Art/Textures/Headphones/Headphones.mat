@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: CreditCard
+  m_Name: Headphones
   m_Shader: {fileID: 4800000, guid: 933532a4fcc9baf4fa0491de14d08ed7, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -30,11 +30,11 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _BaseMap:
-        m_Texture: {fileID: 2800000, guid: d71effafa0b100b4e96a0271e09746c8, type: 3}
+        m_Texture: {fileID: 2800000, guid: 66a16e7f98d8df64fbfe5b1d049d8beb, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
-        m_Texture: {fileID: 2800000, guid: 32782fb7b5817034db096e633a5fb251, type: 3}
+        m_Texture: {fileID: 2800000, guid: d80df5547edb78b4081eb78d332c1561, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DetailAlbedoMap:
@@ -54,19 +54,19 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: d71effafa0b100b4e96a0271e09746c8, type: 3}
+        m_Texture: {fileID: 2800000, guid: 66a16e7f98d8df64fbfe5b1d049d8beb, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
-        m_Texture: {fileID: 2800000, guid: 886f0eddaa6e3714fb169ed717086a96, type: 3}
+        m_Texture: {fileID: 2800000, guid: c8db1f03e3f68764ab2d9cbf71767e91, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
-        m_Texture: {fileID: 2800000, guid: 331b704ddef7db44e9aa7ae6442545be, type: 3}
+        m_Texture: {fileID: 2800000, guid: fb8c0cdd4a99eca40a6a053f5ab46a31, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _ParallaxMap:
-        m_Texture: {fileID: 2800000, guid: d31ac91ff025894469d6eae1cbbbb790, type: 3}
+        m_Texture: {fileID: 2800000, guid: f5dc338b04b3bab4b9b09f533a3402e2, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SpecGlossMap:
@@ -110,7 +110,7 @@ Material:
     - _Parallax: 0.005
     - _QueueOffset: 0
     - _ReceiveShadows: 1
-    - _Smoothness: 0.951
+    - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
@@ -119,13 +119,13 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
-    - _BaseColor: {r: 0.18632075, g: 0.38424236, b: 0.745283, a: 1}
-    - _Color: {r: 0.18632072, g: 0.38424233, b: 0.745283, a: 1}
+    - _BaseColor: {r: 0.7169812, g: 0.15218942, b: 0.15218942, a: 1}
+    - _Color: {r: 0.7169812, g: 0.15218937, b: 0.15218937, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
---- !u!114 &7249807298560101906
+--- !u!114 &2426161964512174849
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}

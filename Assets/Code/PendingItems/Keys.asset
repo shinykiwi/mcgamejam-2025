@@ -15,4 +15,4 @@ MonoBehaviour:
   itemName: 
   description: 
   icon: {fileID: 0}
-  prefab: {fileID: 0}
+  prefab: {fileID: 872759623804306099, guid: 7bb3aea8f456b824eba1ef442e2db432, type: 3}

@@ -15,4 +15,4 @@ MonoBehaviour:
   itemName: Wallet
   description: 
   icon: {fileID: 0}
-  prefab: {fileID: 5389457491920172671, guid: 9ae311c3ee9aa2e4192612be6490f9c0, type: 3}
+  prefab: {fileID: 489369461888904289, guid: a589201e481b86a48b4769aa246c08ce, type: 3}
