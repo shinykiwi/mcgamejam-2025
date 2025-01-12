@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -31,6 +32,11 @@ public class GameManager : MonoBehaviour
     {
         strike++;
         strikeText.flash(strike);
+
+        if (strike == 3)
+        {
+            SceneManager.LoadScene(0);
+        }
     }
     
 }
