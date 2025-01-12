@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
@@ -44,8 +46,14 @@ public class GameManager : MonoBehaviour
 
         if (strike == 3)
         {
-            SceneManager.LoadScene(0);
+            StartCoroutine(EndGame());
         }
+    }
+
+    private IEnumerator EndGame()
+    {
+        yield return new WaitForSeconds(1);
+        SceneManager.LoadScene(0);
     }
     
 }
