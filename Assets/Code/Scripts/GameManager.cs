@@ -1,3 +1,4 @@
+using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -8,8 +9,11 @@ public class GameManager : MonoBehaviour
     
     [SerializeField] private TextMeshProUGUI scoreText;
     [SerializeField] private FadingTextBox strikeText;
+    [SerializeField] private RectTransform scoreRect;
     [HideInInspector] public int strike = 0;
     [HideInInspector]public float score = 0;
+
+    public AudioSource audioSource;
     
     
     public void Awake()
@@ -26,6 +30,11 @@ public class GameManager : MonoBehaviour
     {
         score += _score;
         scoreText.text = "Score: " + score;
+        scoreRect.DOPunchAnchorPos(Vector2.down * 4, 0.8f, 5);
+        if (!audioSource.isPlaying)
+        {
+           audioSource.Play(); 
+        }
     }
 
     public void UpdateStrikesLeft()
