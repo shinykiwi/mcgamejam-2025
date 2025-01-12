@@ -103,7 +103,7 @@ public class BoxSpawner : MonoBehaviour
             {
                 Box box = boxes[i];
                 box.gameObject.SetActive(true);
-                box.InitializeBox();
+                box.InitializeBox(Random.Range(2,6));
                 
                 break;
             }

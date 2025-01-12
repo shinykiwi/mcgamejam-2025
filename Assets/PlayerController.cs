@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
     public PhysicalItem itemHeld;    
     private Camera cam;
 
+    private Outline currentlyGlowingBox;
     void Start()
     {
         cam = GetComponent<Camera>();
@@ -42,6 +43,33 @@ public class PlayerController : MonoBehaviour
                     
             }
         }
+
+        if (Input.GetKeyDown(KeyCode.Z) && ViewManager.Instance.GetCamView() == 1 && customerExists() && customerIsStanding())
+        {
+            giveNothing();
+        }
+
+        if (ViewManager.Instance.GetCamView() == 0)
+        {
+            Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+            if (Physics.Raycast(ray, out RaycastHit hit) && hit.collider.CompareTag("Box"))
+            {
+                
+                Outline box = hit.collider.gameObject.GetComponent<Outline>();
+                if (currentlyGlowingBox != null && box != currentlyGlowingBox )
+                {
+                    currentlyGlowingBox.enabled = false;
+                    
+                }
+                currentlyGlowingBox = box;
+                currentlyGlowingBox.enabled = true;
+            }
+            else if (currentlyGlowingBox != null)
+            {
+                currentlyGlowingBox.enabled = false;
+                currentlyGlowingBox = null;
+            }
+        }
     }
 
 
@@ -53,18 +81,24 @@ public class PlayerController : MonoBehaviour
         return PeopeSpawner.instance.IsStanding();
     }
 
+    void giveNothing()
+    {
+        Person currentPerson = PeopeSpawner.instance.GetCurrentPerson().GetComponent<Person>();
+        currentPerson.SetReturnedObject(null);
+        currentPerson.Resolve();
+    }
     private void giveItemBack(){
+        if (itemHeld == null) return;
+        
         Person currentPerson = PeopeSpawner.instance.GetCurrentPerson().GetComponent<Person>();
         currentPerson.SetReturnedObject(itemHeld);
         currentPerson.Resolve();
-        if(itemHeld != null)
-            Destroy(itemHeld.gameObject);
-
+        Destroy(itemHeld.gameObject);
         itemHeld = null;
     }
     private void ReturnItem()
     {
-        print("CLICKY");
+        
         if(PeopeSpawner.instance.GetCurrentPerson() != null){
             Person currentPerson = PeopeSpawner.instance.GetCurrentPerson().GetComponent<Person>();
             currentPerson.SetReturnedObject(itemHeld);

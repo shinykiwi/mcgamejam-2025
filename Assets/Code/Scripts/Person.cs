@@ -7,7 +7,7 @@ using System.Linq;
 public class Person : MonoBehaviour
 {
     [SerializeField] private PhysicalItem lostItem;
-    [SerializeField] private float timeLeft = 10;
+    [SerializeField] private float timeLeft = 60;
     [SerializeField] private PhysicalItem returnedItem = null;
     [SerializeField] public bool lostItemDoesNotExist = false;
     [SerializeField] public bool resolved = false;
@@ -106,7 +106,9 @@ public class Person : MonoBehaviour
 
     private IEnumerator turntoLeave()
     {
-
+        PeopeSpawner.instance.SetPersonAtCounter(false);
+        PeopeSpawner.instance.SetCurrentPerson(null);
+        standing = false;
         disableSpeachBubble();
         Vector3 startRotation = new Vector3(0, 270, 0);
         Vector3 endRotation = new Vector3(0, 180, 0);
@@ -134,8 +136,6 @@ public class Person : MonoBehaviour
         }
 
         Debug.Log("Destroyed person");
-        PeopeSpawner.instance.SetPersonAtCounter(false);
-        PeopeSpawner.instance.SetCurrentPerson(null);
         Destroy(this.gameObject);
     }
 
@@ -144,35 +144,52 @@ public class Person : MonoBehaviour
     {
         if(ReturnedCorrectItem()){
             Debug.Log("Returned correct item");
-            //add points to score
+            GameManager.instance.UpdateScore(1000);
+            
         } else {
             Debug.Log("Return wrong item");
-            //penalty
+            
+            GameManager.instance.UpdateStrikesLeft();
         }
 
         if(returnedItem != null)
-        Debug.Log("Lost item is " + lostItem.GetDescription() + "Returned item is " + returnedItem.GetDescription());
+            Debug.Log("Lost item is " + lostItem.GetDescription() + "Returned item is " + returnedItem.GetDescription());
         
         StartCoroutine(turntoLeave());
     }
 
     void selectLostObject(){
 
-       int randomValue = UnityEngine.Random.Range(0, 100); 
-       List<PhysicalItem> itemsInInventory = Inventory.instance.GetItems();
+       float randomValue = Random.value;
+       
 
-        if (randomValue < 80 && itemsInInventory.Count > 0)
+        if (randomValue < 0.40 && Inventory.instance.hasItem())
         {
             Debug.Log("Item picked from inventory");
             //pick from item from inventory and assign to person
-            lostItem = itemsInInventory[Random.Range(0, itemsInInventory.Count)];
+            lostItem = Inventory.instance.GetRandomItem();
 
         }
-        else if (randomValue < 95 && BoxSpawner.instance.GetArrayItems().Length > 0)
+        else if (randomValue < 0.80f)
         {
-            Debug.Log("Item picked from box");
-            //pick item from boxes and assign to person
-            lostItem = BoxSpawner.instance.GetRandomItemFromBox();
+            if (BoxSpawner.instance.GetArrayItems().Length > 0)
+            {
+                Debug.Log("Item picked from box");
+                //pick item from boxes and assign to person
+                lostItem = BoxSpawner.instance.GetRandomItemFromBox();    
+            }
+            else if (Inventory.instance.hasItem())
+            {
+                Debug.Log("Item picked from inventory");
+                //pick from item from inventory and assign to person
+                lostItem = Inventory.instance.GetRandomItem();
+            }
+            else
+            {
+                Debug.Log("Item picked from non existing items");
+                //pick item that "does not currently exist" and assign to person
+                lostItem = ItemSpawner.instance.GetRandomItem();
+            }
         }
         else
         {
@@ -188,6 +205,7 @@ public class Person : MonoBehaviour
     private void TimerOver(){
         LeaveCounter();
         //penalty
+        GameManager.instance.UpdateStrikesLeft();
     }
 
     void LeaveCounter(){

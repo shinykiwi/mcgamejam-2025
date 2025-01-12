@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7806eff8722f7f144bab68c216f02540, type: 3}
-  m_Name: CreditCard
+  m_Name: Keys
   m_EditorClassIdentifier: 
-  itemName: 
+  itemName: Keys
   description: 
   icon: {fileID: 0}
-  prefab: {fileID: 7876044251474031377, guid: ca1d73f8fa4e3c5449cc1f49bea27c4c, type: 3}
+  prefab: {fileID: 6430280762408224486, guid: 0df3b2c9c7beb15419b53adca1cb6617, type: 3}

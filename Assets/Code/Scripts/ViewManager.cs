@@ -14,6 +14,7 @@ public class ViewManager : MonoBehaviour
     [SerializeField] private CinemachineCamera boxCam;
 
     [SerializeField] private TextMeshProUGUI debugText;
+    [SerializeField] private TextMeshProUGUI instructionText;
     [SerializeField] private bool debugOn = true;
     
     private BoxSpawner boxSpawner;
@@ -69,16 +70,19 @@ public class ViewManager : MonoBehaviour
                 boxSpawner.enabled = true;
                 boxCam.enabled = true;
                 debugText.text = "Box";
+                instructionText.text = "Click on box to unpack";
                 break;
             case 1:
                 boxSpawner.enabled = false;
                 counterCam.enabled = true;
                 debugText.text = "Counter";
+                instructionText.text = "Click to give item, [Z] if not found";
                 break;
             case 2:
                 boxSpawner.enabled = false;
                 lostNFoundCam.enabled = true;
                 debugText.text = "Lost and Found";
+                instructionText.text = "Click to pick up or put back item";
                 break;
         }
     }

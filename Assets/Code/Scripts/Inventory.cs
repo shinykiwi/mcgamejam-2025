@@ -21,7 +21,7 @@ public class Inventory : MonoBehaviour
 
     public void placeOnInventory(PhysicalItem item)
     {
-        item.transform.position = new Vector3(Random.Range(-3.5f, -2.5f), 1.7f, Random.Range(-8f, -6f));
+        item.transform.position = new Vector3(Random.Range(-3.5f, -2.5f), 2f, Random.Range(-8f, -6f));
         item.transform.rotation = Quaternion.Euler(0f, Random.Range(-45f, 45f), 0f);
         item.GetComponent<Rigidbody>().isKinematic = false;
     }
@@ -35,5 +35,15 @@ public class Inventory : MonoBehaviour
     public List<PhysicalItem> GetItems()
     {
         return items;
+    }
+
+    public bool hasItem()
+    {
+        return items.Count > 0;
+    }
+
+    public PhysicalItem GetRandomItem()
+    {
+        return items[UnityEngine.Random.Range(0, items.Count)];
     }
 }
